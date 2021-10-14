@@ -1,20 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+//COMPONENTS IMPORT
+import Main from './components/main/main'
+import Home from './components/home/home'
+
+//NAVIGATION
+const WINDOW = createStackNavigator();
+
+function mainRender({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Main nav={navigation}/>
+    </View>
+  )
+}
+
+function homeRender({navigation}) {
+  return (
+    <View style={styles.container}>
+      <Home nav={navigation}/>
+    </View>
+  )
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <WINDOW.Navigator 
+      screenOptions = {{
+        headerShown: false
+      }}
+      initialRouteName = "Home"
+      >
+
+        <WINDOW.Screen
+          name = "Main"
+          component = {mainRender}
+        />
+
+        <WINDOW.Screen
+          name = "Home"
+          component = {homeRender}
+        />
+
+      </WINDOW.Navigator>
+    </NavigationContainer>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#D8E0F7',
     alignItems: 'center',
     justifyContent: 'center',
   },
