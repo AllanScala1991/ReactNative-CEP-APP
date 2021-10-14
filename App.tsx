@@ -33,7 +33,7 @@ export default function App() {
       screenOptions = {{
         headerShown: false
       }}
-      initialRouteName = "Home"
+      initialRouteName = "Main"
       >
 
         <WINDOW.Screen
